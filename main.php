@@ -1,25 +1,29 @@
 <?php
 
 include('simple_html_dom.php');
-$html = file_get_html('https://www.geeksforgeeks.org/difference-array-range-update-query-o1/');
-$myJSON='[';
+if(isset($_POST['submit'])){ // Fetching variables of the form which travels in URL
+$url = $_POST['url'];
+$target = $_POST['lang'];
+
+$html = file_get_html($url);
 
 foreach($html->find('p') as $e) {
     $content= $e->innertext;
 
 
 
-
-$api_key = 'AIzaSyAxAi-hpFLRfDoYtsOIopoGkTuaX_9AXI0';
+$api_key = 'AIzaSyD57eC4GMivU6wRW6p2127RzsztTPip7yE';
 $source="en";
-$target="hi";
- 
+
+
 $url = 'https://www.googleapis.com/language/translate/v2?key=' . $api_key . '&q=' . rawurlencode($content);
 $url .= '&target='.$target;
 $url .= '&source='.$source;
- 
+
 $response = file_get_contents($url);
 $obj =json_decode($response,true); //true converts stdClass to associative array.
+
+
 if($obj != null)
 {
     if(isset($obj['error']))
@@ -27,15 +31,13 @@ if($obj != null)
         echo "Error is : ".$obj['error']['message'];
     }
     else
-    {
-        $myOBJ->p= $obj['data']['translations'][0]['translatedText'];
-        $myJSON=$myJSON. json_encode($myOBJ).',';
+    {   echo"<p>".$obj['data']['translations'][0]['translatedText']."</p>";
     }
 }
 else
-    echo "UNKNOW ERROR";
+    echo "UNKNOWN ERROR";
 
 }
-$myJSON=$myJSON.']';
-echo json_encode($myJSON,true);
+}
+
 ?>
