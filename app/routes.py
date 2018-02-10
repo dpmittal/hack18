@@ -1,15 +1,17 @@
 from flask import Flask, render_template, url_for, request, redirect
+import scraper
 app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
     return render_template("index.html")
 
-@app.route('/translate', methods=['POST', 'GET'])
-def translate():
+@app.route('/result', methods=['POST', 'GET'])
+def result():
     if request.method=='POST':
-        result = request.form
-        return render_template("translate.html", result=result)
+        res = request.form
+        scraper.scrape(res)
+        return render_template("resc.html")
 
 @app.errorhandler(404)
 def error_handler(e):
