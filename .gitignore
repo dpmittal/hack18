@@ -3,6 +3,7 @@
 # Virtualenv related
 bin/
 include/
+share/
 pip-selfcheck.json
 
 # Django related
@@ -11,7 +12,8 @@ pip-selfcheck.json
 
 
 # Byte-compiled / optimized / DLL files
-__pycache__/
+*/__pycache__/
+*.pyc
 *.py[cod]
 *$py.class
 

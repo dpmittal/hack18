@@ -9,9 +9,11 @@ A Python based Web App which translates webpages in the given languages:-
 For Installation see the guidelines:-
 1. First Install Virtualenv :-
  `pip install virtualenv`
-2. Then enter the Environment:-
+2. Then setup the virtual environment by:-
+  `virtualenv .`
+3. Then enter the Environment:-
  `. bin/activate`
-3.  Then run:-
+4.  Then run:-
   `pip install -r requirements.txt`
-4. Then to run the app:-
+5. Then to run the app:-
   `python3 app/routes.py`
